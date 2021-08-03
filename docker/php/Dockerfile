@@ -22,6 +22,7 @@ RUN apt-get update \
   && npm install -g npm@${NPM_VERSION} \
   && pecl install xdebug${XDEBUG_VERSION} \
   && docker-php-ext-enable xdebug \
+  && docker-php-ext-install pdo_mysql \
   # composer
   # https://getcomposer.org/download/
   # インストーラーを現在のディレクトリにダウンロード
@@ -40,6 +41,3 @@ RUN apt-get update \
   # apt-get clean では /var/cache/apt/archives にキャッシュされている全てのパッケージを削除
   # rm -rf /var/lib/apt/lists/* では /var/cache/apt/list にキャッシュされている全てのパッケージリストを削除
   && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# port
-EXPOSE 22 80 443

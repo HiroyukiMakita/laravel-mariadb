@@ -13,6 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+// view screen only
 Route::get(
     '/',
     function () {
@@ -43,3 +44,5 @@ Route::get(
         return view('pages.delete');
     }
 );
+
+// use controllers

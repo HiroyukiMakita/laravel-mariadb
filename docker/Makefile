@@ -19,7 +19,7 @@ ARG =
 
 # docker services (container name)
 PHP := php
-DB := mariadb
+DB := db
 
 #########################################################
 # make commands
