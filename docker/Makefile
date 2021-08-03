@@ -35,8 +35,7 @@ laravel:
 	$(eval CONTAINER := $(PHP))
 	$(eval ARG := -c "\
 	cd $(PHP_PROJECT_ROOT)/docker && \
-	bash laravel-installer.sh &&\
-	php artisan key:generate\
+	bash laravel-installer.sh\
 	")
 	@$(EXEC)
 
@@ -57,8 +56,16 @@ exec-php:
 	$(eval ARG := -c "cd $(PHP_PROJECT_ROOT) && bash")
 	@$(EXEC)
 
-exec-nginx:
-	$(eval CONTAINER := $(NGINX))
+serve:
+	@cd ../ && bash ./docker/serve.sh
+
+exec-php-cmd:
+	$(eval CONTAINER := $(PHP))
+	$(eval ARG := -c "cd $(PHP_PROJECT_ROOT) && ${CMD} && bash")
+	@$(EXEC)
+
+exec-db:
+	$(eval CONTAINER := $(DB))
 	@$(EXEC)
 
 down:

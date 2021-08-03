@@ -1,7 +1,14 @@
 ############################################
-# IDE dependencies
+# Dependencies
 ############################################
+# IDE
 .idea
+
+# php
+vendor
+
+# node
+node_modules
 
 ############################################
 # Environment files
@@ -12,3 +19,11 @@
 # volumes
 ############################################
 docker/mariadb/data
+
+############################################
+# others
+############################################
+/public/css
+/public/js
+/public/mix-manifest.json
+
