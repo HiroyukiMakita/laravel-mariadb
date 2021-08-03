@@ -1,5 +1,6 @@
 <?php
 
+// https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
 return [
 
     /*
@@ -14,7 +15,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Laravel-AdminLTE 3 example',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -46,9 +47,9 @@ return [
     */
 
     'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'images/logo-small-50x50.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
-    'logo_img_xl' => null,
+    'logo_img_xl' => 'images/logo-big-210x33.png',
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'AdminLTE',
 
