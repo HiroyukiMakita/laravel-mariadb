@@ -19,3 +19,27 @@ Route::get(
         return view('index');
     }
 );
+Route::get(
+    '/pages/create',
+    function () {
+        return view('pages.create');
+    }
+);
+Route::get(
+    '/pages/read',
+    function () {
+        return view('pages.read');
+    }
+);
+Route::get(
+    '/pages/update',
+    function () {
+        return view('pages.update');
+    }
+);
+Route::get(
+    '/pages/delete',
+    function () {
+        return view('pages.delete');
+    }
+);
