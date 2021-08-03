@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }
@@ -21,8 +22,12 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
-        //
+        /**
+         * 5.7.7 より古い MySQLか 10.2.2 より古い MariaDB の場合、これが必要（users テーブルの migration で落ちる）
+         * https://laravel.com/docs/master/migrations#index-lengths-mysql-mariadb
+         */
+        Schema::defaultStringLength(191);
     }
 }
