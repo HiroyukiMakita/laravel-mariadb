@@ -28,9 +28,7 @@ Route::get(
 );
 Route::get(
     '/pages/read',
-    function () {
-        return view('pages.read');
-    }
+    'Example\ReadController'
 );
 Route::get(
     '/pages/update',
