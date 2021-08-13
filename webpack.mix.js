@@ -20,6 +20,8 @@ mix.js('resources/js/app.js', 'public/js')
     // 変更検知でブラウザをホットリロード
     .browserSync(
         {
+            // コンテナ内で実行してホストからアクセスするため、host を 0.0.0.0 にする
+            host: '0.0.0.0',
             proxy: '127.0.0.1:8000',
             files: [
                 './config/adminlte.php',

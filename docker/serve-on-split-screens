@@ -1,0 +1,8 @@
+ term xterm-256color
+ screen php artisan serve
+ split
+ focus down
+ screen npm run watch
+ split
+ focus down
+ screen bash -c "bash docker/shell/how-to-kill-all-screens.sh && bash"

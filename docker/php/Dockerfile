@@ -18,7 +18,7 @@ ARG NPM_VERSION
 RUN apt-get update \
   # node インストール
   && curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - \
-  && apt-get install -y nodejs git vim \
+  && apt-get install -y nodejs git vim screen \
   && npm install -g npm@${NPM_VERSION} \
   && pecl install xdebug${XDEBUG_VERSION} \
   && docker-php-ext-enable xdebug \
