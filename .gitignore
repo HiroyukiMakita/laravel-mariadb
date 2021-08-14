@@ -26,4 +26,4 @@ docker/mariadb/data
 /public/css
 /public/js
 /public/mix-manifest.json
-
+!/resources/views/vendor
