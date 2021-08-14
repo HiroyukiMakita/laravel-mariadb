@@ -23,6 +23,7 @@ docker/mariadb/data
 ############################################
 # others
 ############################################
+.phpunit.result.cache
 /public/css
 /public/js
 /public/mix-manifest.json
