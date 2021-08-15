@@ -25,7 +25,7 @@ DB := db
 # make commands
 #########################################################
 
-bootstrap:
+init:
 	@make build up laravel install-admin-lte
 
 build:
@@ -58,6 +58,12 @@ exec-php:
 
 serve:
 	@bash shell/serve.sh
+
+serve-laravel:
+	@make exec-php-cmd CMD="php artisan serve"
+
+serve-ui:
+	@make exec-php-cmd CMD="npm run watch"
 
 exec-php-cmd:
 	$(eval CONTAINER := $(PHP))
