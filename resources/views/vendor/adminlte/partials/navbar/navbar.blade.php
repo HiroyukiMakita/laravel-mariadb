@@ -29,6 +29,11 @@
             @else
                 @include('adminlte::partials.navbar.menu-item-logout-link')
             @endif
+        @else
+            @php( $login_url = View::getSection('login_url') ?? config('adminlte.login_url', 'login') )
+            <a class="nav-link" href="{{ $login_url }}">
+                <span class="fas fa-sign-in-alt"></span>{{ __('adminlte::adminlte.sign_in') }}
+            </a>
         @endif
 
         {{-- Role switcher buttons --}}
