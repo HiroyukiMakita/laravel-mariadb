@@ -247,9 +247,13 @@ return [
 //        ],
 
         // Sidebar items:
-        ['header' => 'CRUD example pages'],
         [
-            'text' => 'pages',
+            'text' => '権限情報',
+            'url' => 'pages/role',
+            'icon' => 'fas fa-fw fa-user-tag',
+        ],
+        [
+            'text' => 'exampleCRUD',
             'icon' => 'fas fa-fw fa-database',
             'submenu' => [
                 [
