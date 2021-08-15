@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // view screen only
@@ -44,3 +45,7 @@ Route::get(
 );
 
 // use controllers
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

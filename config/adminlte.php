@@ -190,18 +190,13 @@ return [
 
     'use_route_url' => false,
     'dashboard_url' => '/',
-//    'logout_url' => 'logout',
-//    'login_url' => 'login',
-//    'register_url' => 'register',
-//    'password_reset_url' => 'password/reset',
-//    'password_email_url' => 'password/email',
-//    'profile_url' => false,
-
-    // CRUD example
-    'create_url' => 'example/create',
-    'read_url' => 'example/read',
-    'update_url' => 'example/update',
-    'delete_url' => 'example/delete',
+    'logout_url' => 'logout',
+    'login_url' => 'login',
+    'register_url' => 'register',
+    'password_reset_url' => 'password/reset',
+    'password_email_url' => 'password/email',
+    'profile_url' => false,
+    'role_change_url' => '/role/change',
 
     /*
     |--------------------------------------------------------------------------

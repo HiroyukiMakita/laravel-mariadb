@@ -21,15 +21,15 @@
         <div class="input-group mb-3 justify-content-center border" style="border-radius: .25rem">
             <strong>アカウントに付与する権限(複数可)</strong>
             <ul class="list-unstyled">
-                @foreach(Permissions::getKeys() as $key)
-                    @if(Permissions::DEVELOPER !== Permissions::getValue($key))
+                @foreach(Roles::getKeys() as $key)
+                    @if(Roles::DEVELOPER !== Roles::getValue($key))
                         <li class="form-check">
                             <label class="form-check-label"
                                    for="{{ strtolower($key) }}">
                                 <input type="checkbox" name="{{strtolower($key)}}" id="{{strtolower($key)}}"
                                        class="form-check-input" {{ $errors->has('role') ? 'is-invalid' : '' }}">
-                                {{ Permissions::getLabels()[Permissions::getValue($key)] }}
-                                <span class="fas {{ 'fa-' . Permissions::getIcons()[Permissions::getValue($key)] }} {{ config('adminlte.classes_auth_icon', '') }}">
+                                {{ Roles::getLabels()[Roles::getValue($key)] }}
+                                <span class="fas {{ Roles::getIcons()[Roles::getValue($key)] }} {{ config('adminlte.classes_auth_icon', '') }}">
                     </span>
                             </label>
                         </li>
@@ -119,10 +119,10 @@
     </form>
 @stop
 
-{{--@section('auth_footer')--}}
-{{--    <p class="my-0">--}}
-{{--        <a href="{{ $login_url }}">--}}
-{{--            {{ __('adminlte::adminlte.i_already_have_a_membership') }}--}}
-{{--        </a>--}}
-{{--    </p>--}}
-{{--@stop--}}
+@section('auth_footer')
+    <p class="my-0">
+        <a href="{{ $login_url }}">
+            {{ __('adminlte::adminlte.sign_in') }}
+        </a>
+    </p>
+@stop
