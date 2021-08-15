@@ -2,8 +2,6 @@
 
 namespace App\Enums;
 
-use BenSampo\Enum\Enum;
-
 /**
  * @method static static DEVELOPER()
  * @method static static MANAGER()
@@ -11,7 +9,7 @@ use BenSampo\Enum\Enum;
  * @method static static OPERATOR()
  * @method static static HANDLER()
  */
-final class Roles extends Enum
+final class Roles extends BaseEnum
 {
     public const DEVELOPER = 0;
     public const MANAGER = 2;
@@ -35,27 +33,8 @@ final class Roles extends Enum
         self::HANDLER => 'fa-house-user',
     ];
 
-    public static function getLabels(): array
-    {
-        return self::$labels;
-    }
-
     public static function getIcons(): array
     {
         return self::$icons;
-    }
-
-    public static function getLabel(int $value): string
-    {
-        $labels = self::getLabels();
-        return $labels[$value];
-    }
-
-    public static function getLowerKeys(): array
-    {
-        $strToLower = static function ($upper) {
-            return strtolower($upper);
-        };
-        return array_map($strToLower, self::getKeys());
     }
 }
