@@ -43,6 +43,16 @@ Route::get(
         return view('pages.delete');
     }
 );
+Route::get(
+    '/pages/role',
+    function () {
+        return view('pages.role');
+    }
+)->middleware('auth');
+
+Route::post('/role/change', 'Auth\Role\ChangeController')
+    ->middleware('auth')
+    ->name('role-change');
 
 // use controllers
 

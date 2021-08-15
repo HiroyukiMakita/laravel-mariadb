@@ -31,6 +31,13 @@
             @endif
         @endif
 
+        {{-- Role switcher buttons --}}
+        @if(Auth::user())
+            @if(config('adminlte.roleswitch_enabled'))
+                @include('adminlte::partials.navbar.menu-item-role', ['user' => Auth::user()])
+            @endif
+        @endif
+
         {{-- Right sidebar toggler link --}}
         @if(config('adminlte.right_sidebar'))
             @include('adminlte::partials.navbar.menu-item-right-sidebar-toggler')
