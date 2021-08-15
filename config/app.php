@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\Roles;
+use App\Enums\RoleStatuses;
 use BenSampo\Enum\EnumServiceProvider;
 
 return [
@@ -228,6 +230,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Roles' => Roles::class,
+        'RoleStatuses' => RoleStatuses::class,
 
     ],
 
