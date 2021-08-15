@@ -9,15 +9,26 @@ use BenSampo\Enum\Enum;
  * @method static static DISABLED()
  * @method static static ENABLED()
  */
-final class PermissionStatuses extends Enum
+final class RoleStatuses extends Enum
 {
     public const NONE = null;
     public const DISABLED = 0;
     public const ENABLED = 1;
 
-    public $label = [
+    public static $labels = [
         self::NONE => '権限無し',
         self::DISABLED => '無効',
         self::ENABLED => '有効',
     ];
+
+    public static function getLabels(): array
+    {
+        return self::$labels;
+    }
+
+    public static function getLabel($value): string
+    {
+        $labels = self::getLabels();
+        return $labels[$value];
+    }
 }

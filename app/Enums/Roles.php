@@ -11,7 +11,7 @@ use BenSampo\Enum\Enum;
  * @method static static OPERATOR()
  * @method static static HANDLER()
  */
-final class Permissions extends Enum
+final class Roles extends Enum
 {
     public const DEVELOPER = 0;
     public const MANAGER = 2;
@@ -28,11 +28,11 @@ final class Permissions extends Enum
     ];
 
     public static $icons = [
-        self::DEVELOPER => 'user-cog',
-        self::MANAGER => 'user-tie',
-        self::AUTHORIZER => 'thumbs-up',
-        self::OPERATOR => 'keyboard',
-        self::HANDLER => 'store-alt',
+        self::DEVELOPER => 'fa-user-cog',
+        self::MANAGER => 'fa-user-tie',
+        self::AUTHORIZER => 'fa-user-check',
+        self::OPERATOR => 'fa-user-astronaut',
+        self::HANDLER => 'fa-house-user',
     ];
 
     public static function getLabels(): array
@@ -45,7 +45,7 @@ final class Permissions extends Enum
         return self::$icons;
     }
 
-    public function getLabel(int $value): string
+    public static function getLabel(int $value): string
     {
         $labels = self::getLabels();
         return $labels[$value];
