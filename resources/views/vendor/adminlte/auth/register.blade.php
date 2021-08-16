@@ -22,7 +22,7 @@
             <strong>アカウントに付与する権限(複数可)</strong>
             <ul class="list-unstyled">
                 @foreach(Roles::getKeys() as $key)
-                    @if(Roles::DEVELOPER !== Roles::getValue($key))
+                    @if(Roles::DEVELOPER !== Roles::getValue($key) || (Auth::user() && Roles::HANDLER !== Roles::getValue($key)))
                         <li class="form-check">
                             <label class="form-check-label"
                                    for="{{ strtolower($key) }}">

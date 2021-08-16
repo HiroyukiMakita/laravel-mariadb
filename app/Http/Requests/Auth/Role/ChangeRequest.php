@@ -26,7 +26,6 @@ class ChangeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'current_role' => ['required', Rule::in($this->roleKeys())],
             'next_role' => ['required', Rule::in($this->roleKeys())],
         ];
     }
@@ -34,11 +33,6 @@ class ChangeRequest extends FormRequest
     private function roleKeys(): array
     {
         return Roles::getLowerKeys();
-    }
-
-    public function getCurrentRoleKey(): string
-    {
-        return $this->input('current_role');
     }
 
     public function getNextRoleKey(): string

@@ -5,9 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Role extends Model
+class RoleOwnerships extends Model
 {
-    protected $table = 'roles';
+    protected $table = 'role_ownerships';
 
     /**
      * The attributes that are mass assignable.

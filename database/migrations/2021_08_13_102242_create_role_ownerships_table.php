@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRolesTable extends Migration
+class CreateRoleOwnershipsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,14 @@ class CreateRolesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('role_ownerships', function (Blueprint $table) {
             $table->unsignedBigInteger('id');
             /**
              * @link Roles
              * 権限の定数名を小文字にしたものをカラム名にする
              */
             foreach (Roles::getLowerKeys() as $label) {
-                $table->boolean($label)->nullable()->default(null);
+                $table->boolean($label)->default(false);
             }
             $table->timestamps();
             $table->primary('id');
@@ -36,6 +36,6 @@ class CreateRolesTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('role_ownerships');
     }
 }

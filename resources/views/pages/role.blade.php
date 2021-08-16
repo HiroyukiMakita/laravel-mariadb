@@ -25,10 +25,9 @@
         <caption class="card-title">ユーザー id に紐づく権限テーブル</caption>
         <tbody>
         <tr>
-            @foreach(Auth::user()->roles()->first()->toArray() as $key => $value)
+            @foreach(Auth::user()->rolesOwnership()->first()->toArray() as $key => $value)
                 @php($role = $key !== 'id' &&
                         (
-                        $value === \App\Enums\RoleStatuses::NONE ||
                         $value === \App\Enums\RoleStatuses::DISABLED ||
                         $value === \App\Enums\RoleStatuses::ENABLED
                         )
@@ -43,7 +42,7 @@
             @endforeach
         </tr>
         <tr>
-            @foreach(Auth::user()->roles()->first()->toArray() as $key => $value)
+            @foreach(Auth::user()->rolesOwnership()->first()->toArray() as $key => $value)
                 @php($role = $key !== 'id' &&
                         (
                         $value === \App\Enums\RoleStatuses::DISABLED ||

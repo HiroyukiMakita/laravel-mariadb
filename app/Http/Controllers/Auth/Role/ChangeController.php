@@ -7,22 +7,27 @@ use App\Enums\RoleStatuses;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\Role\ChangeRequest;
 use App\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class ChangeController extends Controller
 {
-    public function __invoke(ChangeRequest $request)
+    /**
+     * @param ChangeRequest $request
+     * @return RedirectResponse
+     */
+    public function __invoke(ChangeRequest $request): RedirectResponse
     {
         $userId = Auth::id();
-        $currentRoleKey = $request->getCurrentRoleKey();
         $nextRoleKey = $request->getnextRoleKey();
-        $user = User::with('roles')->find($userId);
+        $user = User::with('rolesOwnership')->findOrFail($userId);
+        $disabledRoleStatus = RoleStatuses::DISABLED;
+        if (($user->rolesOwnership->$nextRoleKey ?? $disabledRoleStatus) === $disabledRoleStatus) {
+            return Redirect::back();
+        }
         $user->role = Roles::getValue(strtoupper($nextRoleKey));
-        $user->roles->$currentRoleKey = RoleStatuses::DISABLED;
-        $user->roles->$nextRoleKey = RoleStatuses::ENABLED;
         $user->save();
-        $user->roles->save();
         return Redirect::back();
     }
 }

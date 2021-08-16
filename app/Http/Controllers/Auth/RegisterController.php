@@ -66,40 +66,38 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
-        $roles = [];
-        foreach (Roles::getKeys() as $key) {
-            // 一旦全て null
-            $roles[strtolower($key)] = RoleStatuses::NONE;
-        }
         $roleData = array_intersect_key(
             $data,
             array_flip(Roles::getLowerKeys())
         );
+        $roles = [];
         $truthKeys = [];
         foreach ($roleData as $key => $value) {
             $columnName = strtolower($key);
             if ($value === 'on') {
                 $truthKeys[] = $columnName;
-                // 無効として権限付与
+                // 権限あり
+                $roles[$columnName] = RoleStatuses::ENABLED;
+            } else {
+                // 権限なし
                 $roles[$columnName] = RoleStatuses::DISABLED;
             }
         }
-        $enabledPermission = 9;
+        $enabledRoleValue = 9;
         if (count($truthKeys) > 0) {
             $truthKey = $truthKeys[0];
-            // 1つだけ有効
-            $roles[$truthKey] = RoleStatuses::ENABLED;
-            $enabledPermission = Roles::getValue(strtoupper($truthKey));
+            $enabledRoleValue = Roles::getValue(strtoupper($truthKey));
         }
 
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role' => $enabledPermission,
+            // 付与された権限のうち１つだけ選択する
+            'role' => $enabledRoleValue,
         ]);
 
-        $user->find($userId = $user->id)->roles()->create(
+        $user->find($userId = $user->id)->rolesOwnership()->create(
             array_merge(['id' => $userId], $roles)
         );
 

@@ -1,5 +1,5 @@
 <li class="nav-item dropdown user-menu">
-    @php($userRoles = $user->roles()->first()->toArray())
+    @php($userRoles = $user->rolesOwnership()->first()->toArray())
     @php($roleSwitchable = count(array_filter($userRoles, static function($role) {return $role === \App\Enums\RoleStatuses::DISABLED;})) > 0)
 
     @if(!$roleSwitchable)
@@ -22,7 +22,11 @@
             <li class="user-footer">
                 権限を切り替える
                 @foreach($userRoles as $key => $role)
-                    @if($role === \App\Enums\RoleStatuses::DISABLED)
+                    @if(
+                        $key !== 'id' &&
+                        $role === \App\Enums\RoleStatuses::ENABLED &&
+                        $user->role !== \App\Enums\Roles::getValue(strtoupper($key))
+                    )
                         <a class="btn btn-default btn-flat float-right btn-block"
                            onclick="document.getElementById('role-switch-form-{{$key}}').submit();">
                             <span class="fas {{ Roles::getIcons()[\App\Enums\Roles::getValue(strtoupper($key))] }}"></span>
@@ -31,8 +35,6 @@
                         <form id="role-switch-form-{{$key}}" action="{{route('role-change')}}" method="POST"
                               style="display: none;">
                             {{ csrf_field() }}
-                            <input type="hidden" name="current_role"
-                                   value="{{strtolower(Roles::getKey($user->role))}}"/>
                             <input type="hidden" name="next_role" value="{{$key}}"/>
                         </form>
                     @endif
