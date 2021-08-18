@@ -49,6 +49,12 @@ Route::get(
         return view('pages.role');
     }
 )->middleware('auth');
+Route::get(
+    '/pages/manager/user-register',
+    function () {
+        return view('pages.manager.user-register');
+    }
+)->middleware('auth');
 
 Route::post('/role/change', 'Auth\Role\ChangeController')
     ->middleware('auth')
