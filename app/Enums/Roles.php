@@ -3,7 +3,6 @@
 namespace App\Enums;
 
 /**
- * @method static static DEVELOPER()
  * @method static static MANAGER()
  * @method static static AUTHORIZER()
  * @method static static OPERATOR()
@@ -11,14 +10,12 @@ namespace App\Enums;
  */
 final class Roles extends BaseEnum
 {
-    public const DEVELOPER = 0;
-    public const MANAGER = 2;
-    public const AUTHORIZER = 4;
-    public const OPERATOR = 6;
-    public const HANDLER = 8;
+    public const MANAGER = 90;
+    public const AUTHORIZER = 80;
+    public const OPERATOR = 70;
+    public const HANDLER = 60;
 
     public static $labels = [
-        self::DEVELOPER => '開発者',
         self::MANAGER => '管理者',
         self::AUTHORIZER => '承認者',
         self::OPERATOR => 'オペレーター',
@@ -26,7 +23,6 @@ final class Roles extends BaseEnum
     ];
 
     public static $icons = [
-        self::DEVELOPER => 'fa-user-cog',
         self::MANAGER => 'fa-user-tie',
         self::AUTHORIZER => 'fa-user-check',
         self::OPERATOR => 'fa-user-astronaut',

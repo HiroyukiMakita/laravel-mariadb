@@ -16,7 +16,6 @@ class RoleOwnerships extends Model
      */
     protected $fillable = [
         'id',
-        'developer',
         'manager',
         'authorizer',
         'operator',
