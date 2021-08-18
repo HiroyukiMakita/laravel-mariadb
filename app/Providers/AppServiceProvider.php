@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         /**
+         * DB のカラムの長さ未指定の場合のデフォルト指定
          * 5.7.7 より古い MySQLか 10.2.2 より古い MariaDB の場合、これが必要（users テーブルの migration で落ちる）
          * https://laravel.com/docs/master/migrations#index-lengths-mysql-mariadb
          */
