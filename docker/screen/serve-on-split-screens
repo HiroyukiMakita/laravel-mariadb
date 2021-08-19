@@ -5,4 +5,4 @@
  screen npm run watch
  split
  focus down
- screen bash -c "bash docker/shell/how-to-kill-all-screens.sh && bash"
+ screen bash -c "bash docker/shell/how-to-screen.sh && bash"
