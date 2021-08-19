@@ -1,0 +1,4 @@
+# マウススクロール
+termcapinfo xterm* ti@:te@
+# スクロール行数
+defscrollback 100000

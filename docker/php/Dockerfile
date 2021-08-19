@@ -41,3 +41,8 @@ RUN apt-get update \
   # apt-get clean では /var/cache/apt/archives にキャッシュされている全てのパッケージを削除
   # rm -rf /var/lib/apt/lists/* では /var/cache/apt/list にキャッシュされている全てのパッケージリストを削除
   && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# screen の設定
+COPY screen/.screenrc /var/www/html/docker/screen/.screenrc
+RUN cat /var/www/html/docker/screen/.screenrc >> ~/.screenrc
+

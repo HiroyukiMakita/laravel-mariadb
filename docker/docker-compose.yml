@@ -3,7 +3,8 @@ version: '3'
 services:
   php:
     build:
-      context: php
+      context: .
+      dockerfile: ./php/Dockerfile
       args:
         - PHP_IMAGE_VERSION=${PHP_IMAGE_VERSION}
         - XDEBUG_VERSION=${XDEBUG_VERSION}
