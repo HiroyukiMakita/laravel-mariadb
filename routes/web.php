@@ -60,6 +60,10 @@ Route::post('/role/change', 'Auth\Role\ChangeController')
     ->middleware('auth')
     ->name('role-change');
 
+Route::get('/pages/search-vue-component', function () {
+    return view('pages.search-vue-component');
+});
+
 // use controllers
 
 Auth::routes();
