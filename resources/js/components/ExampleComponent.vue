@@ -8,10 +8,11 @@
                   <div class="card-body">
                     I'm an example component.
                   </div>
-                  <div class="card-body">
+                  <div v-if="loading" class="spinner-border"></div>
+                  <div v-else class="card-body">
                     {{ text }}
                   </div>
-                    <button type="button" class="btn btn-danger" @click="resetText">文字列リセット</button>
+                  <button type="button" class="btn btn-danger" @click="resetText">文字列リセット</button>
                   <button type="button" class="btn btn-primary" @click="doAjaxRequest">Ajax 実行</button>
                 </div>
             </div>
@@ -26,19 +27,23 @@ import {AxiosResponse} from "~/axios";
 export default {
   data() {
     return {
+      loading: false,
       text: 'デフォルト文字列',
     }
   },
   methods: {
     resetText() {
-      this.text = '文字列リセット成功';
+      this.text = '文字列リセット完了';
     },
     doAjaxRequest() {
-      axios.get('/ajax/request').then((result: AxiosResponse<{ ajax_result: string }>) => {
+      this.loading = true;
+      axios.get('/ajax/request')
+          .then((result: AxiosResponse<{ ajax_result: string }>) => {
             console.log(result);
             this.text = result.data?.ajax_result ?? '';
-          }
-      );
+          })
+          .catch(() => this.text = '文字列取得失敗')
+          .finally(() => this.loading = false);
     },
   },
   mounted() {
