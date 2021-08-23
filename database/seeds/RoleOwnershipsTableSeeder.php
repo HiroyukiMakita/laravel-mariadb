@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ExamplesTableSeeder extends Seeder
+class RoleOwnershipsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class ExamplesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        factory(App\Models\Example::class, 5)->create();
+        factory(App\Models\RoleOwnerships::class)->create();
     }
 }

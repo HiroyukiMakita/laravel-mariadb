@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Example;
 
-use App\Example;
+use App\Models\Example;
 use App\Http\Controllers\Controller;
 
 class ReadController extends Controller
