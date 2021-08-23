@@ -63,6 +63,7 @@ Route::post('/role/change', 'Auth\Role\ChangeController')
 Route::get('/pages/search-vue-component', function () {
     return view('pages.search-vue-component');
 });
+Route::get('/ajax/request', 'Example\AjaxController');
 
 // use controllers
 

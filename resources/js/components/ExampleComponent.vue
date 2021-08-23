@@ -3,11 +3,16 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Example Component</div>
+                  <div class="card-header">Example Component</div>
 
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
+                  <div class="card-body">
+                    I'm an example component.
+                  </div>
+                  <div class="card-body">
+                    {{ text }}
+                  </div>
+                    <button type="button" class="btn btn-danger" @click="resetText">文字列リセット</button>
+                  <button type="button" class="btn btn-primary" @click="doAjaxRequest">Ajax 実行</button>
                 </div>
             </div>
         </div>
@@ -15,7 +20,27 @@
 </template>
 
 <script lang="ts">
+
+import {AxiosResponse} from "~/axios";
+
 export default {
+  data() {
+    return {
+      text: 'デフォルト文字列',
+    }
+  },
+  methods: {
+    resetText() {
+      this.text = '文字列リセット成功';
+    },
+    doAjaxRequest() {
+      axios.get('/ajax/request').then((result: AxiosResponse<{ ajax_result: string }>) => {
+            console.log(result);
+            this.text = result.data?.ajax_result ?? '';
+          }
+      );
+    },
+  },
   mounted() {
     const greet: string = 'Hello TypeScript';
     type IsTypeScript = 'TypeScript';
