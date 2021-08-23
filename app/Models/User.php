@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-use function app\Helpers\aesDecrypt;
-use function app\Helpers\aesEncrypt;
+use function app\Helpers\aes_decrypt;
+use function app\Helpers\aes_encrypt;
 
 /**
  * @method static create(array $array)
@@ -61,7 +61,7 @@ class User extends Authenticatable
      */
     public function scopeName($query, $input): void
     {
-        $query->whereRaw(aesDecrypt('name') . ' like ?', ["%$input%"]);
+        $query->whereRaw(aes_decrypt('name') . ' like ?', ["%$input%"]);
     }
 
     /**
@@ -72,15 +72,15 @@ class User extends Authenticatable
      */
     public function scopeEmail($query, $input): void
     {
-        $query->whereRaw(aesDecrypt('email') . ' like ?', ["%$input%"]);
+        $query->whereRaw(aes_decrypt('email') . ' like ?', ["%$input%"]);
     }
 
     public function createUser($inputs)
     {
         $role = $inputs['role'] ?? Roles::HANDLER;
         return self::create([
-            'name' => aesEncrypt($inputs['name']),
-            'email' => aesEncrypt($inputs['email']),
+            'name' => aes_encrypt($inputs['name']),
+            'email' => aes_encrypt($inputs['email']),
             'role' => $role,
             'password' => $inputs['password'],
         ]);

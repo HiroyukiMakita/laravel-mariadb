@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Str;
 
-use function app\Helpers\aesEncrypt;
+use function app\Helpers\aes_encrypt;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ use function app\Helpers\aesEncrypt;
 
 $factory->define(User::class, function () {
     return [
-        'name' => aesEncrypt('テストユーザー'),
+        'name' => aes_encrypt('テストユーザー'),
         'email' => 'test@j-yado.com',
         'email_verified_at' => now(),
         'role' => Roles::MANAGER,

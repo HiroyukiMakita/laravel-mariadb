@@ -3,16 +3,17 @@
 namespace app\Helpers;
 
 
+
 use Illuminate\Support\Facades\DB;
 
-if (!function_exists('aesDecrypt')) {
+if (!function_exists('aes_decrypt')) {
     /**
      * 複合化
      *
      * @param $column
      * @return string
      */
-    function aesDecrypt($column): string
+    function aes_decrypt($column): string
     {
         $key = getAesEncryptKey();
 
@@ -20,14 +21,14 @@ if (!function_exists('aesDecrypt')) {
     }
 }
 
-if (!function_exists('aesEncrypt')) {
+if (!function_exists('aes_encrypt')) {
     /**
      * 暗号化
      *
      * @param $value
      * @return string
      */
-    function aesEncrypt($value): string
+    function aes_encrypt($value): string
     {
         $key = getAesEncryptKey();
 
