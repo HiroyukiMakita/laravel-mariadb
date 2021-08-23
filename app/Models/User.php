@@ -6,6 +6,7 @@ use App\Enums\Roles;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 use function app\Helpers\aes_decrypt;
 use function app\Helpers\aes_encrypt;
@@ -79,7 +80,7 @@ class User extends Authenticatable
     {
         $role = $inputs['role'] ?? Roles::HANDLER;
         return self::create([
-            'name' => aes_encrypt($inputs['name']),
+            'name' => DB::raw(aes_encrypt($inputs['name'])),
             'email' => aes_encrypt($inputs['email']),
             'role' => $role,
             'password' => $inputs['password'],

@@ -3,9 +3,6 @@
 namespace app\Helpers;
 
 
-
-use Illuminate\Support\Facades\DB;
-
 if (!function_exists('aes_decrypt')) {
     /**
      * 複合化
@@ -32,7 +29,7 @@ if (!function_exists('aes_encrypt')) {
     {
         $key = getAesEncryptKey();
 
-        return DB::raw("HEX(AES_ENCRYPT('$value', '$key'))");
+        return "HEX(AES_ENCRYPT('$value', '$key'))";
     }
 }
 
