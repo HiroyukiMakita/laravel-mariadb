@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Enums\Roles;
 use App\Enums\RoleStatuses;
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -83,13 +83,13 @@ class RegisterController extends Controller
                 $roles[$columnName] = RoleStatuses::DISABLED;
             }
         }
-        $enabledRoleValue = 9;
+        $enabledRoleValue = Roles::HANDLER;
         if (count($truthKeys) > 0) {
             $truthKey = $truthKeys[0];
             $enabledRoleValue = Roles::getValue(strtoupper($truthKey));
         }
 
-        $user = User::create([
+        $user = (new User)->createUser([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

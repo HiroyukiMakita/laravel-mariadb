@@ -2,10 +2,17 @@
 
 namespace App\Models;
 
+use App\Enums\Roles;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use function app\Helpers\aesDecrypt;
+use function app\Helpers\aesEncrypt;
+
+/**
+ * @method static create(array $array)
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -46,43 +53,36 @@ class User extends Authenticatable
         return $this->belongsTo(RoleOwnerships::class, 'id');
     }
 
-//    /**
-//     * name accessor
-//     * @param string $value
-//     * @return string
-//     */
-//    public function getNameAttribute($value): string
-//    {
-//        return Crypt::decrypt($value);
-//    }
-//
-//    /**
-//     * name mutator
-//     * @param string $value
-//     * @return void
-//     */
-//    public function setNameAttribute($value): void
-//    {
-//        $this->attributes['name'] = Crypt::encrypt($value);
-//    }
-//
-//    /**
-//     * email accessor
-//     * @param string $value
-//     * @return string
-//     */
-//    public function getEmailAttribute($value): string
-//    {
-//        return Crypt::decrypt($value);
-//    }
-//
-//    /**
-//     * email mutator
-//     * @param string $value
-//     * @return void
-//     */
-//    public function setEmailAttribute($value): void
-//    {
-//        $this->attributes['email'] = Crypt::encrypt($value);
-//    }
+    /**
+     * 複合化名称検索スコープ
+     *
+     * @param $query
+     * @param $input
+     */
+    public function scopeName($query, $input): void
+    {
+        $query->whereRaw(aesDecrypt('name') . ' like ?', ["%$input%"]);
+    }
+
+    /**
+     * 複合化メールアドレス検索スコープ
+     *
+     * @param $query
+     * @param $input
+     */
+    public function scopeEmail($query, $input): void
+    {
+        $query->whereRaw(aesDecrypt('email') . ' like ?', ["%$input%"]);
+    }
+
+    public function createUser($inputs)
+    {
+        $role = $inputs['role'] ?? Roles::HANDLER;
+        return self::create([
+            'name' => aesEncrypt($inputs['name']),
+            'email' => aesEncrypt($inputs['email']),
+            'role' => $role,
+            'password' => $inputs['password'],
+        ]);
+    }
 }
