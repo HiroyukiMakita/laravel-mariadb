@@ -14,6 +14,7 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css')
+    .ts('resources/js/**/*', 'public/js/**/*')
     // ソースマップ作成
     .sourceMaps()
     // バージョニングを有効化

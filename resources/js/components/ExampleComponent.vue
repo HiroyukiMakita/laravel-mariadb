@@ -14,10 +14,18 @@
     </div>
 </template>
 
-<script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+<script lang="ts">
+export default {
+  mounted() {
+    const greet: string = 'Hello TypeScript';
+    type IsTypeScript = 'TypeScript';
+    console.log('Component mounted.');
+    const isTypeScript = (value: any): IsTypeScript =>
+        value.includes('TypeScript')
+
+    if (isTypeScript(greet)) {
+      console.log(greet);
     }
+  }
+}
 </script>
