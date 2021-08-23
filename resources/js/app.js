@@ -7,7 +7,11 @@
 require('./bootstrap');
 
 import Vue from 'vue';
+<<<<<<< HEAD
 import ExampleComponent from './components/ExampleComponent.vue';
+=======
+import ExampleComponent from '../js/components/ExampleComponent.vue';
+>>>>>>> 2d08ac12c98cae78ccceb7cc52ec690b77331e74
 
 /**
  * The following block of code may be used to automatically register your
