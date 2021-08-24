@@ -5,7 +5,6 @@
 use App\Enums\Roles;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factory;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 use function app\Helpers\aes_encrypt;
@@ -23,7 +22,7 @@ use function app\Helpers\aes_encrypt;
 
 $factory->define(User::class, function () {
     return [
-        'name' => DB::raw(aes_encrypt('テストユーザー')),
+        'name' => aes_encrypt('テストユーザー'),
         'email' => 'test@example.com',
         'email_verified_at' => now(),
         'role' => Roles::MANAGER,

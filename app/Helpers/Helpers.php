@@ -29,7 +29,7 @@ if (!function_exists('aes_encrypt')) {
     {
         $key = getAesEncryptKey();
 
-        return "HEX(AES_ENCRYPT('$value', '$key'))";
+        return \DB::raw("HEX(AES_ENCRYPT('$value', '$key'))");
     }
 }
 
