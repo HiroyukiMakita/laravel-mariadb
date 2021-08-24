@@ -13,7 +13,7 @@ if (!function_exists('aes_decrypt')) {
      * @param $column
      * @return string
      */
-    function aes_decrypt($column): string
+    function decrypt_column($column): string
     {
         $key = getAesEncryptKey();
 
