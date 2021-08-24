@@ -1,5 +1,11 @@
 <?php
+
 namespace App\Lib;
+
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
+
+use function app\Helpers\decrypt_column;
 
 trait Aescrypt
 {
@@ -8,13 +14,13 @@ trait Aescrypt
      *
      * モデルのdecrypts配列プロパティに複合化したいカラム名を列挙して使用する。
      *
-     * @return $this|\Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
-    public function newQuery()
+    public function newQuery(): Builder
     {
         $query = parent::newQuery()->select('*');
         foreach ($this->decrypts as $column) {
-            $query->addSelect(\DB::raw(decrypt_column($column)." as decrypt_$column"));
+            $query->addSelect(DB::raw(decrypt_column($column) . " as decrypt_$column"));
         }
         return $query;
     }

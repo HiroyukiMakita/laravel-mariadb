@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\Roles;
+use App\Lib\Aescrypt;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -16,6 +17,7 @@ use function app\Helpers\decrypt_column;
 class User extends Authenticatable
 {
     use Notifiable;
+    use Aescrypt;
 
     /**
      * The attributes that are mass assignable.
@@ -46,6 +48,10 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    private $decrypts = [
+        'name',
     ];
 
     public function rolesOwnership(): BelongsTo
