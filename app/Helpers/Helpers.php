@@ -3,6 +3,9 @@
 namespace app\Helpers;
 
 
+use Illuminate\Database\Query\Expression;
+use Illuminate\Support\Facades\DB;
+
 if (!function_exists('aes_decrypt')) {
     /**
      * 複合化
@@ -23,13 +26,13 @@ if (!function_exists('aes_encrypt')) {
      * 暗号化
      *
      * @param $value
-     * @return string
+     * @return Expression
      */
-    function aes_encrypt($value): string
+    function aes_encrypt($value): Expression
     {
         $key = getAesEncryptKey();
 
-        return \DB::raw("HEX(AES_ENCRYPT('$value', '$key'))");
+        return DB::raw("HEX(AES_ENCRYPT('$value', '$key'))");
     }
 }
 

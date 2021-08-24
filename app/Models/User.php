@@ -80,7 +80,7 @@ class User extends Authenticatable
         $role = $inputs['role'] ?? Roles::HANDLER;
         return self::create([
             'name' => aes_encrypt($inputs['name']),
-            'email' => aes_encrypt($inputs['email']),
+            'email' => $inputs['email'],
             'role' => $role,
             'password' => $inputs['password'],
         ]);
