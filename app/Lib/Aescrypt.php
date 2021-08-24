@@ -20,7 +20,8 @@ trait Aescrypt
     {
         $query = parent::newQuery()->select('*');
         foreach ($this->decrypts as $column) {
-            $query->addSelect(DB::raw(decrypt_column($column) . " as decrypt_$column"));
+//            $query->addSelect(DB::raw(decrypt_column($column) . " as decrypt_$column"));
+            $query->addSelect(DB::raw(decrypt_column($column) . " as $column"));
         }
         return $query;
     }
