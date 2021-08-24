@@ -2,6 +2,7 @@
 
 use App\Enums\Roles;
 use App\Enums\RoleStatuses;
+use App\Providers\CustomPasswordResetServiceProvider;
 use BenSampo\Enum\EnumServiceProvider;
 
 return [
@@ -160,7 +161,7 @@ return [
         Illuminate\Pipeline\PipelineServiceProvider::class,
         Illuminate\Queue\QueueServiceProvider::class,
         Illuminate\Redis\RedisServiceProvider::class,
-        Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
+        CustomPasswordResetServiceProvider::class,
         Illuminate\Session\SessionServiceProvider::class,
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
