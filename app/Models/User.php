@@ -52,6 +52,7 @@ class User extends Authenticatable
 
     private $decrypts = [
         'name',
+        'email',
     ];
 
     public function rolesOwnership(): BelongsTo
@@ -86,7 +87,7 @@ class User extends Authenticatable
         $role = $inputs['role'] ?? Roles::HANDLER;
         return self::create([
             'name' => aes_encrypt($inputs['name']),
-            'email' => $inputs['email'],
+            'email' => aes_encrypt($inputs['email']),
             'role' => $role,
             'password' => $inputs['password'],
         ]);
