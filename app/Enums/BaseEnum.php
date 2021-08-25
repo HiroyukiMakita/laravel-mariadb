@@ -26,4 +26,9 @@ class BaseEnum extends Enum
         };
         return array_map($strToLower, static::getKeys());
     }
+
+    public static function getLowerKey($value): string
+    {
+        return strtolower(static::getKey($value));
+    }
 }

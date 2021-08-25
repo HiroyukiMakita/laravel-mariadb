@@ -11,6 +11,7 @@
 |
 */
 
+use App\Enums\Roles;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -54,7 +55,7 @@ Route::get(
     function () {
         return view('pages.manager.user-register');
     }
-)->middleware('auth');
+)->middleware(['auth', role(Roles::MANAGER)]);
 
 Route::post('/role/change', 'Auth\Role\ChangeController')
     ->middleware('auth')
@@ -70,3 +71,8 @@ Route::get('/ajax/request', 'Example\AjaxController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+function role($value): string
+{
+    return 'can:' . Roles::getLowerKey($value);
+}
