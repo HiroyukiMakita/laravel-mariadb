@@ -6,7 +6,7 @@ use App\Enums\Roles;
 use App\Enums\RoleStatuses;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\Role\ChangeRequest;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;

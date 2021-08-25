@@ -18,7 +18,7 @@
                                 <label class="form-check-label"
                                        for="{{ strtolower($key) }}">
                                     <input type="checkbox" name="{{strtolower($key)}}" id="{{strtolower($key)}}"
-                                           class="form-check-input" {{ $errors->has('role') ? 'is-invalid' : '' }}">
+                                           class="form-check-input {{ $errors->has('role') ? 'is-invalid' : '' }}">
                                     {{ Roles::getLabels()[Roles::getValue($key)] }}
                                     <span class="fas {{ Roles::getIcons()[Roles::getValue($key)] }} {{ config('adminlte.classes_auth_icon', '') }}">
                     </span>
