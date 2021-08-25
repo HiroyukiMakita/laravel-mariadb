@@ -7,10 +7,16 @@ window._ = require('lodash');
  */
 
 try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
-
-    require('bootstrap');
+    /**
+     * Vue コンポーネント追加後、Admin-LTE のドロップダウンが動かなくなった
+     * https://nebikatsu.com/7232.html/ によると app.js が原因のようなのだが、
+     * app.blade.php に書いている app.js を消すと Vue コンポーネントが表示できないので、
+     * ここをコメントアウトしてみたところ、Vue もドロップダウンも動いた。
+     */
+    // window.Popper = require('popper.js').default;
+    // window.$ = window.jQuery = require('jquery');
+    //
+    // require('bootstrap');
 } catch (e) {}
 
 /**
