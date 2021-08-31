@@ -22,8 +22,6 @@
 
 <script lang="ts">
 
-import {AxiosResponse} from "~/axios";
-
 export default {
   data() {
     return {

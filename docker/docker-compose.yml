@@ -22,8 +22,8 @@ services:
       - ${XDEBUG_INI_PATH}:/usr/local/etc/php/conf.d/zz-xdebug.ini
       - ${PROJECT_PATH}:${PHP_PROJECT_ROOT}
     ports:
-      - "8000:8000"
-      - "3000:3000"
+      - "800:8000"
+      - "300:3000"
   db:
     build:
       context: ${DATABASE_BUILD_PATH}

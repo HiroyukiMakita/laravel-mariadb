@@ -39,6 +39,18 @@ laravel:
 	")
 	@$(EXEC)
 
+# Laravel デフォルトの認証周りをインストール
+# https://readouble.com/laravel/6.x/ja/authentication.html
+install-laravel-ui-auth:
+	$(eval CONTAINER := $(PHP))
+	$(eval ARG := -c "\
+	cd $(PHP_PROJECT_ROOT) && \
+	composer require laravel/ui \"^1.0\" --dev && \
+	php artisan ui vue --auth && \
+	npm install\
+	")
+	@$(EXEC)
+
 install-admin-lte:
 	$(eval CONTAINER := $(PHP))
 	$(eval ARG := -c "\
@@ -47,6 +59,30 @@ install-admin-lte:
 	php artisan adminlte:install\
 	")
 	@$(EXEC)
+
+install-laravel-auditing:
+	$(eval CONTAINER := $(PHP))
+	$(eval ARG := -c "\
+	cd $(PHP_PROJECT_ROOT)/docker && \
+	bash shell/laravel-auditing-installer.sh\
+	")
+	@$(EXEC)
+
+catch-up:
+	$(eval CONTAINER := $(PHP))
+	$(eval ARG := -c "\
+	cd $(PHP_PROJECT_ROOT) && \
+	composer install && \
+	npm install\
+	")
+	@$(EXEC)
+
+join:
+	@cp ../.env.example ../.env && \
+	make build up catch-up \
+	exec-php-cmd CMD="echo no|php artisan adminlte:install && \
+	php artisan key:generate" \
+	serve
 
 up:
 	@$(UP)
